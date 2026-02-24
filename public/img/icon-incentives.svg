@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 41.4662 41.4662" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 26">
+<rect width="41.4662" height="41.4662" rx="5.27752" fill="url(#paint0_linear_0_15)"/>
+<path id="Icon" d="M22.8333 27.3117H13.2336C11.9081 27.3117 10.8336 26.2372 10.8336 24.9118L10.8333 15.912C10.8333 14.5864 11.9078 13.5119 13.2333 13.5119H27.6328C28.9583 13.5119 30.0328 14.5858 30.0328 15.9113L30.0329 20.1119M11.4329 17.7117H29.4329M25.8329 24.9543L28.2871 22.5117M28.2871 22.5117L30.6329 24.8439M28.2871 22.5117L28.2871 27.9543" stroke="var(--stroke-0, white)" stroke-width="2.4042" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_15" x1="0" y1="0" x2="41.4662" y2="41.4662" gradientUnits="userSpaceOnUse">
+<stop stop-color="#84EABA"/>
+<stop offset="1" stop-color="#31DD78"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,846 @@
+
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style is:global>
+
+.isg-routes {
+  --font:           'Outfit', sans-serif;
+  --c-orange:       #ffa600;
+  --c-orange-dark:  #ff8000;
+  --c-amber:        #ffc300;
+  --c-red:          #ff4d00;
+  --c-teal:         #00ded3;
+  --c-text:         #464646;
+  --c-text-light:   #555;
+  --c-text-btn:     #1e1e1e;
+  --c-white:        #fff;
+  --radius-pill:    60px;
+  --radius-card:    18px;
+  --radius-img:     25px;
+  --ease:           cubic-bezier(.23, 1, .32, 1);
+  --transition:     0.3s ease;
+}
+
+
+.isg-routes *   { margin: 0; padding: 0; box-sizing: border-box; }
+.isg-routes     { font-family: var(--font); color: var(--c-text); overflow-x: hidden; }
+.isg-routes img { display: block; }
+.isg-routes a   { text-decoration: none; color: inherit; }
+
+
+@keyframes fadeInUp    { from { opacity: 0; transform: translateY(60px) }  to { opacity: 1; transform: translateY(0) } }
+@keyframes fadeInLeft  { from { opacity: 0; transform: translateX(-60px) } to { opacity: 1; transform: translateX(0) } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(60px) }  to { opacity: 1; transform: translateX(0) } }
+@keyframes scaleIn     { from { opacity: 0; transform: scale(.85) }        to { opacity: 1; transform: scale(1) } }
+@keyframes slideDown   { from { opacity: 0; transform: translateY(-40px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 166, 0, .4); }
+  50%      { box-shadow: 0 0 30px 10px rgba(255, 166, 0, .15); }
+}
+
+.anim-hidden     { opacity: 0; will-change: opacity, transform; }
+.anim-fade-up    { animation: fadeInUp    .9s var(--ease) both; }
+.anim-fade-left  { animation: fadeInLeft  .9s var(--ease) both; }
+.anim-fade-right { animation: fadeInRight .9s var(--ease) both; }
+.anim-scale-in   { animation: scaleIn    .9s var(--ease) both; }
+.anim-slide-down { animation: slideDown  .9s var(--ease) both; }
+
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .2s; }
+.delay-3 { animation-delay: .3s; }
+.delay-4 { animation-delay: .4s; }
+.delay-5 { animation-delay: .5s; }
+
+
+
+/* Full-bleed dark sections (hero, new-routes) */
+.hero,
+.new-routes                       { position: relative; overflow: hidden; }
+
+.hero__bg,
+.new-routes__bg                   { position: absolute; inset: 0; z-index: 0; }
+
+.isg-routes .hero__bg img,
+.isg-routes .new-routes__bg img   { width: 100%; height: 100%; object-fit: cover; max-width: none; }
+
+.hero__overlay,
+.new-routes__overlay              { position: absolute; inset: 0; z-index: 1; }
+
+.hero__content,
+.new-routes__content              { position: relative; z-index: 2; max-width: 1280px; }
+
+/* Contained sections */
+.why-pr,
+.biz-opp,
+.explore                          { max-width: 1400px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════════════════════
+   5. BUTTONS
+   ═══════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 36px 18px 42px;
+  border-radius: var(--radius-pill);
+  border: none;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: clamp(.85rem, 1.2vw, 1.1rem);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+}
+.btn:hover  { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0, 0, 0, .25); }
+.btn:active { transform: translateY(0); }
+
+.btn a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+.btn img,
+.btn svg            { width: 18px; height: auto; flex-shrink: 0; align-self: center; }
+.btn img.icon-lg    { width: 24px; height: 24px; object-fit: contain; }
+
+/* Primary – orange gradient with pulse */
+.btn--primary {
+  background: linear-gradient(90deg, #e69500, #d96e00);
+  color: var(--c-text-btn);
+  font-weight: 800;
+  animation: pulseGlow 3s infinite;
+}
+.btn--primary:hover,
+.btn--cta-large:hover { filter: brightness(1.1); }
+
+/* Secondary – frosted glass */
+.btn--secondary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(255, 255, 255, .06);
+  color: var(--c-white);
+  border: 1px solid rgba(255, 255, 255, .18);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, .18),
+    inset 0  1px 0 rgba(255, 255, 255, .35),
+    inset 0 -1px 0 rgba(255, 255, 255, .08);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  will-change: backdrop-filter;
+  transform: translateZ(0);
+}
+.btn--secondary::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(160deg, rgba(255, 255, 255, .3), rgba(255, 255, 255, .04) 45%, rgba(255, 255, 255, .12));
+}
+.btn--secondary:hover {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .38);
+  box-shadow:
+    0 14px 38px rgba(0, 0, 0, .22),
+    inset 0  1px 0 rgba(255, 255, 255, .45),
+    inset 0 -1px 0 rgba(255, 255, 255, .12);
+}
+
+/* CTA Large */
+.btn--cta-large {
+  background: linear-gradient(90deg, var(--c-amber), var(--c-red));
+  color: var(--c-text-btn);
+  font-weight: 800;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  padding: 22px 48px;
+}
+
+/* Dark CTA */
+.btn--dark-cta {
+  background: linear-gradient(90deg, var(--c-orange), var(--c-orange-dark));
+  color: var(--c-text-btn);
+  padding: 20px 44px;
+  font-size: clamp(.9rem, 1.3vw, 1.15rem);
+}
+
+/* ═══════════════════════════════════════════════════════
+   6. HERO
+   ═══════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 60px;
+}
+.hero__overlay { background: rgba(42, 75, 61, .55); }
+.hero__content { text-align: center; }
+
+.hero__title {
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 7rem);
+  line-height: 1.1;
+  color: var(--c-white);
+  margin-bottom: 30px;
+}
+.hero__title span { color: var(--c-teal); }
+
+.hero__subtitle {
+  font-weight: 500;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  color: #eee;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  line-height: 1.5;
+}
+.hero__buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   7. WHY PUERTO RICO
+   ═══════════════════════════════════════════════════════ */
+.why-pr { padding: 120px 60px; }
+.why-pr__header { margin-bottom: 60px; }
+
+.why-pr__title {
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  line-height: 1.2;
+  background: linear-gradient(90deg, var(--c-orange), var(--c-orange-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  overflow: visible;
+  padding-bottom: 0.1em;
+  margin-bottom: 20px;
+}
+.why-pr__desc {
+  font-weight: 400;
+  font-size: clamp(.95rem, 1.2vw, 1.25rem);
+  color: var(--c-text-light);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.why-pr__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+.why-pr__list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  list-style: none;
+}
+.why-pr__item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.isg-routes .why-pr__icon {
+  width: 22px;
+  min-width: 22px;
+  height: 22px;
+  max-height: 22px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  object-fit: contain;
+}
+.why-pr__item-content h4 {
+  font-weight: 700;
+  font-size: clamp(.95rem, 1.1vw, 1.15rem);
+  color: #000;
+  margin-bottom: 8px;
+}
+.why-pr__item-content p {
+  font-weight: 300;
+  font-size: clamp(.85rem, 1vw, 1.05rem);
+  color: var(--c-text-light);
+  line-height: 1.6;
+}
+
+.why-pr__image {
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  min-height: 400px;
+  max-height: 600px;
+}
+.isg-routes .why-pr__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+  transition: transform .6s ease;
+}
+.why-pr__image:hover img { transform: scale(1.04); }
+
+/* ═══════════════════════════════════════════════════════
+   8. BUSINESS OPPORTUNITIES
+   ═══════════════════════════════════════════════════════ */
+.biz-opp { padding: 100px 60px; }
+.biz-opp__header { margin-bottom: 50px; }
+
+.biz-opp__title {
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  color: var(--c-text);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.biz-opp__title span { color: var(--c-orange); font-style: italic; }
+
+.biz-opp__subtitle {
+  font-weight: 400;
+  font-size: clamp(.95rem, 1.2vw, 1.25rem);
+  color: #000;
+  line-height: 1.6;
+}
+.biz-opp__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.biz-card {
+  background: rgba(238, 238, 238, .25);
+  border: 2px solid rgba(230, 230, 230, .5);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.biz-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .08);
+  border-color: rgba(255, 166, 0, .4);
+}
+.biz-card__icon                   { width: 42px; min-width: 42px; height: 42px; flex-shrink: 0; }
+.isg-routes .biz-card__icon img   { width: 42px; height: 42px; max-height: 42px; object-fit: contain; }
+
+.biz-card h4 {
+  font-weight: 700;
+  font-size: clamp(.9rem, 1vw, 1.1rem);
+  color: #000;
+  margin-bottom: 10px;
+}
+.biz-card p {
+  font-weight: 300;
+  font-size: clamp(.8rem, .9vw, .95rem);
+  color: var(--c-text-light);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   9. NEW ROUTES
+   ═══════════════════════════════════════════════════════ */
+.new-routes         { padding: 120px 60px; }
+.new-routes__overlay { background: rgba(26, 37, 44, .87); }
+.new-routes__content { margin: 0 auto; }
+
+.new-routes__title {
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 7rem);
+  line-height: 1.1;
+  color: var(--c-white);
+  margin-bottom: 40px;
+}
+.new-routes__text {
+  font-weight: 400;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  color: #d5d5d5;
+  max-width: 750px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.new-routes__quote {
+  font-weight: 300;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  color: #d5d5d5;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   10. EXPLORE / CTA
+   ═══════════════════════════════════════════════════════ */
+.explore { padding: 120px 60px; text-align: center; }
+
+.explore__title {
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  color: var(--c-text);
+  max-width: 900px;
+  margin: 0 auto 30px;
+  line-height: 1.15;
+}
+.explore__subtitle {
+  font-weight: 300;
+  font-size: clamp(.95rem, 1.3vw, 1.3rem);
+  color: var(--c-text-light);
+  max-width: 700px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   11. MODAL
+   ═══════════════════════════════════════════════════════ */
+.isg-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+  background: rgba(0, 0, 0, .45);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+.isg-modal-overlay.is-open { opacity: 1; visibility: visible; }
+
+.isg-modal {
+  position: relative;
+  width: 90vw;
+  max-width: 720px;
+  height: 85vh;
+  height: 85dvh;
+  max-height: 800px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .22);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, .35),
+    inset 0  1px 0 rgba(255, 255, 255, .3),
+    inset 0 -1px 0 rgba(255, 255, 255, .06);
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+  transform: scale(.92) translateY(30px);
+  transition: transform .4s cubic-bezier(.23, 1, .32, 1), opacity .35s ease;
+  opacity: 0;
+}
+.isg-modal-overlay.is-open .isg-modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.isg-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .18);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s ease, transform .2s ease;
+  line-height: 1;
+}
+.isg-modal__close:hover {
+  background: rgba(255, 255, 255, .32);
+  transform: scale(1.1);
+}
+
+.isg-modal__iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Spinner */
+@keyframes isg-spin {
+  to { transform: rotate(360deg); }
+}
+.isg-modal__spinner {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .25);
+  border-radius: 24px;
+  transition: opacity .3s ease;
+}
+.isg-modal__spinner.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.isg-modal__spinner::after {
+  content: '';
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, .2);
+  border-top-color: var(--c-orange, #ffa600);
+  border-radius: 50%;
+  animation: isg-spin .7s linear infinite;
+}
+
+/* ═══════════════════════════════════════════════════════
+   12. RESPONSIVE – TABLET (≤ 1024px)
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero       { padding: 100px 40px; }
+  .why-pr     { padding: 80px 40px; }
+  .biz-opp    { padding: 80px 40px; }
+  .new-routes { padding: 80px 40px; }
+  .explore    { padding: 80px 40px; }
+
+  .why-pr__grid     { grid-template-columns: 1fr; gap: 40px; }
+  .why-pr__image    { order: -1; min-height: 260px; max-height: 360px; }
+  .isg-routes .why-pr__image img { min-height: 260px; max-height: 360px; }
+
+  .biz-opp__cards   { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   13. RESPONSIVE – MOBILE (≤ 640px)
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .hero            { padding: 80px 24px; min-height: 90vh; }
+  .hero__buttons   { flex-direction: column; gap: 16px; }
+  .hero__buttons .btn {
+    width: fit-content;
+    max-width: 100%;
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .why-pr          { padding: 60px 24px; }
+  .why-pr__title   { margin-bottom: 14px; }
+  .why-pr__image   { min-height: 220px; max-height: 300px; }
+  .isg-routes .why-pr__image img { min-height: 220px; max-height: 300px; }
+  .why-pr__list    { gap: 28px; }
+
+  .biz-opp         { padding: 60px 24px; }
+  .biz-opp__cards  { grid-template-columns: 1fr; }
+
+  .new-routes      { padding: 60px 24px; }
+  .explore         { padding: 60px 24px; }
+
+  .btn--cta-large,
+  .btn--dark-cta   { width: 100%; justify-content: center; }
+
+  .isg-modal            { width: 96vw; height: 80vh; height: 80dvh; max-height: none; border-radius: 18px; margin: auto; }
+  .isg-modal__iframe    { border-radius: 18px; }
+  .isg-modal__close     { top: 10px; right: 10px; width: 32px; height: 32px; font-size: 18px; }
+}
+
+</style>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HTML
+     ═══════════════════════════════════════════════════════ -->
+<div class="isg-routes">
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d61a785a8f52fa11f_hero-bg.avif" alt="Puerto Rico aerial view" loading="eager" />
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title anim-hidden" data-anim="fade-up">
+        Looking to Expand Your Air Routes in the <span>Caribbean?</span>
+      </h1>
+      <p class="hero__subtitle anim-hidden delay-2" data-anim="fade-up">
+        Meet a destination actively seeking new airline partners, routes and long-term business opportunities.
+      </p>
+      <div class="hero__buttons">
+        <div class="anim-hidden delay-4 btn btn--primary" data-anim="fade-up">
+          <a href="#contact">
+            Become a Strategic Partner
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="anim-hidden delay-5 btn btn--secondary" data-anim="fade-up">
+          <a href="#contact">
+            Let's Talk Routes &amp; Connectivity
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. WHY PUERTO RICO -->
+  <section class="why-pr" id="why">
+    <div class="why-pr__header anim-hidden" data-anim="fade-up">
+      <h2 class="why-pr__title">Why Puerto Rico?</h2>
+      <p class="why-pr__desc">
+        The strategic advantages that make Puerto Rico the ideal aviation partner in the Caribbean.
+      </p>
+    </div>
+
+    <div class="why-pr__grid">
+      <ul class="why-pr__list">
+        <li class="why-pr__item anim-hidden" data-anim="fade-left">
+          <img class="why-pr__icon" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d094f9818ce436547_icon-location.svg" alt="" />
+          <div class="why-pr__item-content">
+            <h4>Strategic Location</h4>
+            <p>Between North America, Latin America &amp; the Caribbean — 3.5h average flight to 80% of the Americas.</p>
+          </div>
+        </li>
+        <li class="why-pr__item anim-hidden delay-1" data-anim="fade-left">
+          <img class="why-pr__icon" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d408fccba081f4db4_icon-jurisdiction.svg" alt="" />
+          <div class="why-pr__item-content">
+            <h4>U.S. Jurisdiction</h4>
+            <p>Operate under U.S. FAA standards with seamless access to Latin American markets.</p>
+          </div>
+        </li>
+        <li class="why-pr__item anim-hidden delay-2" data-anim="fade-left">
+          <img class="why-pr__icon" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d3ad0477ed2f04693_icon-tourism.svg" alt="" />
+          <div class="why-pr__item-content">
+            <h4>Strong Tourism Demand</h4>
+            <p>Year-round leisure and business travel with consistent passenger growth.</p>
+          </div>
+        </li>
+        <li class="why-pr__item anim-hidden delay-3" data-anim="fade-left">
+          <img class="why-pr__icon" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d16130ad88b91f4a0_icon-airport.svg" alt="" />
+          <div class="why-pr__item-content">
+            <h4>Airport Infrastructure</h4>
+            <p>Modern SJU airport with dual runways, Cat III ILS, and 24/7 operations.</p>
+          </div>
+        </li>
+        <li class="why-pr__item anim-hidden delay-4" data-anim="fade-left">
+          <img class="why-pr__icon" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d8c63719d186d1fab_icon-government.svg" alt="" />
+          <div class="why-pr__item-content">
+            <h4>Government Support</h4>
+            <p>Tax incentives, marketing programs and route development support for airline partners.</p>
+          </div>
+        </li>
+        <li class="why-pr__item anim-hidden delay-5" data-anim="fade-left">
+          <img class="why-pr__icon" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2dd520154a33abf379_icon-performance.svg" alt="" />
+          <div class="why-pr__item-content">
+            <h4>Proven Performance</h4>
+            <p>Track record in connectivity growth and leisure &amp; business travel performance.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="why-pr__image anim-hidden" data-anim="fade-right">
+        <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d66e7467f8850e6f2_puerto-rico-colorful.avif" alt="Colorful streets of Puerto Rico" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BUSINESS OPPORTUNITIES -->
+  <section class="biz-opp" id="opportunities">
+    <div class="biz-opp__header anim-hidden" data-anim="fade-up">
+      <h2 class="biz-opp__title">
+        Business Opportunities with <span>Puerto Rico</span>
+      </h2>
+      <p class="biz-opp__subtitle">
+        Discover why airlines, investors and operators are choosing Puerto Rico as their next strategic move.
+      </p>
+    </div>
+
+    <div class="biz-opp__cards">
+      <div class="biz-card anim-hidden" data-anim="fade-up">
+        <div class="biz-card__icon"><img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d4a9dc04b92e11db7_icon-new-routes.svg" alt="" /></div>
+        <div>
+          <h4>New Direct Routes</h4>
+          <p>Explore untapped markets and expand your network with strategic connections across the Americas.</p>
+        </div>
+      </div>
+      <div class="biz-card anim-hidden delay-1" data-anim="fade-up">
+        <div class="biz-card__icon"><img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d0923cf1f88e2b058_icon-seasonal.svg" alt="" /></div>
+        <div>
+          <h4>Seasonal &amp; Charter Routes</h4>
+          <p>Capitalize on peak tourism seasons and special events throughout the year.</p>
+        </div>
+      </div>
+      <div class="biz-card anim-hidden delay-2" data-anim="fade-up">
+        <div class="biz-card__icon"><img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d7fdc2bc056b0655d_icon-cargo.svg" alt="" /></div>
+        <div>
+          <h4>Cargo &amp; Mixed-Use Operations</h4>
+          <p>Leverage our logistics infrastructure for freight and combined passenger-cargo services.</p>
+        </div>
+      </div>
+      <div class="biz-card anim-hidden delay-3" data-anim="fade-up">
+        <div class="biz-card__icon"><img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d5ee593f1cceca248_icon-codeshare.svg" alt="" /></div>
+        <div>
+          <h4>Codeshare &amp; Interline Agreements</h4>
+          <p>Partner with established carriers to offer seamless connections for passengers.</p>
+        </div>
+      </div>
+      <div class="biz-card anim-hidden delay-4" data-anim="fade-up">
+        <div class="biz-card__icon"><img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d135b9a11511cf322_icon-incentives.svg" alt="" /></div>
+        <div>
+          <h4>Airport Services &amp; Incentives</h4>
+          <p>Access competitive rates, dedicated support programs, and operational advantages.</p>
+        </div>
+      </div>
+      <div class="biz-card anim-hidden delay-5" data-anim="fade-up">
+        <div class="biz-card__icon"><img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2dfb3f9c0f0d44ab49_icon-routes.svg" alt="" /></div>
+        <div>
+          <h4>Joint Destination Marketing</h4>
+          <p>Co-create campaigns to drive demand and maximize route performance together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. NEW ROUTES – DARK CTA -->
+  <section class="new-routes">
+    <div class="new-routes__bg">
+      <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2dd4482dabd1bf380a_new-routes-bg.avif" alt="Airport runway" loading="lazy" />
+    </div>
+    <div class="new-routes__overlay"></div>
+    <div class="new-routes__content">
+      <h2 class="new-routes__title anim-hidden" data-anim="fade-left">
+        Puerto Rico Is Looking for New Routes
+      </h2>
+      <p class="new-routes__text anim-hidden delay-2" data-anim="fade-left">
+        Puerto Rico is actively seeking airline partners interested in opening new routes and strengthening air connectivity with Latin America and international markets.
+      </p>
+      <p class="new-routes__quote anim-hidden delay-3" data-anim="fade-left">
+        "We are ready to explore mutually beneficial opportunities."
+      </p>
+      <div class="anim-hidden delay-4 btn btn--dark-cta" data-anim="fade-up">
+        <a href="#contact">
+          <img class="icon-lg" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2de82cab07c52c4fd9_icon-chat.svg" alt="" />
+          Start a Business Conversation
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EXPLORE – CTA -->
+  <section class="explore">
+    <h2 class="explore__title anim-hidden" data-anim="fade-up">
+      Let's Explore Business Opportunities Together
+    </h2>
+    <p class="explore__subtitle anim-hidden delay-2" data-anim="fade-up">
+      Are you interested in doing business with Puerto Rico? Tell us about your company and connectivity interests, and our team will contact you.
+    </p>
+    <div class="anim-hidden delay-3 btn btn--cta-large" data-anim="scale-in">
+      <a href="#contact">
+        Become a Strategic Partner
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL -->
+<div class="isg-modal-overlay" id="isgModal">
+  <div class="isg-modal">
+    <button class="isg-modal__close" id="isgModalClose" aria-label="Close">&times;</button>
+    <div class="isg-modal__spinner" id="isgModalSpinner"></div>
+    <iframe
+      class="isg-modal__iframe"
+      id="isgModalIframe"
+      src="about:blank"
+      loading="lazy"
+      allow="clipboard-write"
+    ></iframe>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     JS – Entrance Animations & Modal
+     ═══════════════════════════════════════════════════════ -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── Entrance animations via IntersectionObserver ── */
+    var animMap = {
+      'fade-up':    'anim-fade-up',
+      'fade-left':  'anim-fade-left',
+      'fade-right': 'anim-fade-right',
+      'scale-in':   'anim-scale-in',
+      'slide-down': 'anim-slide-down'
+    };
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el   = entry.target;
+          var type = el.getAttribute('data-anim') || 'fade-up';
+          el.classList.remove('anim-hidden');
+          el.classList.add(animMap[type] || 'anim-fade-up');
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-anim]').forEach(function (el) {
+      observer.observe(el);
+    });
+
+    /* ── Modal ── */
+    var MODAL_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d481328.6288223673!2d-66.16499505!3d18.220833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c0296261a8e3e55%3A0xb9d44472e27b0f4e!2sPuerto%20Rico!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus';
+
+    var overlay  = document.getElementById('isgModal');
+    var iframe   = document.getElementById('isgModalIframe');
+    var closeBtn = document.getElementById('isgModalClose');
+    var spinner  = document.getElementById('isgModalSpinner');
+
+    iframe.addEventListener('load', function () {
+      spinner.classList.add('is-hidden');
+    });
+
+    function openModal(e) {
+      e.preventDefault();
+      spinner.classList.remove('is-hidden');
+      if (iframe.src === 'about:blank') iframe.src = MODAL_URL;
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.btn').forEach(function (btn) {
+      btn.addEventListener('click', openModal);
+      var anchor = btn.querySelector('a');
+      if (anchor) anchor.addEventListener('click', function (ev) { ev.preventDefault(); });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+  });
+</script>
