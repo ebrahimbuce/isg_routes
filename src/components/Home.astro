@@ -159,7 +159,7 @@
 
 /* CTA Large */
 .btn--cta-large {
-  background: linear-gradient(90deg, var(--c-amber), var(--c-red));
+  background: linear-gradient(90deg, #ffb000, #ff7a00);
   color: var(--c-text-btn);
   font-weight: 800;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
@@ -168,7 +168,7 @@
 
 /* Dark CTA */
 .btn--dark-cta {
-  background: linear-gradient(90deg, var(--c-orange), var(--c-orange-dark));
+  background: linear-gradient(90deg, #ffb000, #ff7a00);
   color: var(--c-text-btn);
   padding: 20px 44px;
   font-size: clamp(.9rem, 1.3vw, 1.15rem);
@@ -306,7 +306,7 @@
   margin-bottom: 16px;
   line-height: 1.15;
 }
-.biz-opp__title span { color: var(--c-orange); font-style: italic; }
+.biz-opp__title span { color: var(--c-orange); font-style: italic; white-space: nowrap; }
 
 .biz-opp__subtitle {
   font-weight: 400;
@@ -593,21 +593,28 @@
 /* ═══════════════════════════════════════════════════════
    14. FOOTER
    ═══════════════════════════════════════════════════════ */
+
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  padding: 0 2.5rem;
-  height: 72px;
+  height: 110px;
   background: #373737ad;
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   backdrop-filter: blur(18px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.site-header__inner {
+  width: min(100%, 1400px);
+  height: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 2.5rem;
 }
 
 .site-header__left {
@@ -616,20 +623,13 @@
   justify-content: flex-start;
 }
 
-.site-header__logos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
 .site-header__logo-horizontal {
-  height: 36px;
+  height: 90px;
   width: auto;
 }
 
 .site-header__logo-shield {
-  height: 52px;
+  height: 90px;
   width: auto;
 }
 
@@ -639,53 +639,15 @@
   justify-content: flex-end;
 }
 
-.site-header__center {
-  text-align: center;
-}
-
-.site-header__center-text {
-  font-family: var(--font);
-  font-size: .95rem;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: .01em;
-  white-space: nowrap;
-}
-
-.btn--nav {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 22px;
-  border-radius: var(--radius-pill);
-  border: none;
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.85rem;
-  cursor: pointer;
-  white-space: nowrap;
-  background: linear-gradient(90deg, #ffb000, #ff7a00);
-  color: var(--c-text-btn);
-  box-shadow: 0 4px 16px rgba(255, 140, 0, .3);
-  transition: transform var(--transition), filter var(--transition);
-}
-.btn--nav:hover  { transform: translateY(-2px); filter: brightness(1.1); }
-.btn--nav:active { transform: translateY(0); }
-.btn--nav svg    { width: 14px; height: 14px; flex-shrink: 0; }
-
 @media (max-width: 640px) {
   .site-header {
-    padding: 0 1.25rem;
     height: 60px;
   }
-  .site-header__logo-horizontal { height: 26px; }
-  .site-header__logo-shield     { height: 38px; }
-  .site-header__center-text     { display: none; }
-  .btn--nav {
-    padding: 9px 12px;
-    gap: 7px;
-    font-size: 0.78rem;
+  .site-header__inner {
+    padding: 0 1.25rem;
   }
+  .site-header__logo-horizontal { height: 45px; }
+  .site-header__logo-shield     { height: 50px; }
 }
 
 .footer {
@@ -753,28 +715,21 @@
 
   <!-- HEADER NAV -->
   <header class="site-header">
-    <div class="site-header__left">
-      <div class="site-header__logos">
+    <div class="site-header__inner">
+      <div class="site-header__left">
         <img
-          src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699f0d9f13f9a80f08b48564_logo_1_white.svg"
-          alt="Logo CTPR"
+          src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a065cb9fff3bc8b9f6aebb_Layer_1.svg"
+          alt="Logo Turismo"
           class="site-header__logo-horizontal"
         />
+      </div>
+      <div class="site-header__right">
         <img
           src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699f0d9afed82125f9e9f24e_Asset%205.avif"
           alt="Escudo"
           class="site-header__logo-shield"
         />
       </div>
-    </div>
-    <div class="site-header__center">
-      <span class="site-header__center-text">Puerto Rico Is Ready to Do Business</span>
-    </div>
-    <div class="site-header__right">
-      <button class="btn--nav">
-        <span>Become a Partner</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </button>
     </div>
   </header>
 
@@ -813,9 +768,9 @@
   <!-- 2. WHY PUERTO RICO -->
   <section class="why-pr" id="why">
     <div class="why-pr__header anim-hidden" data-anim="fade-up">
-      <h2 class="why-pr__title">Why Puerto Rico?</h2>
+      <h2 class="why-pr__title">Why Puerto&nbsp;Rico?</h2>
       <p class="why-pr__desc">
-        The strategic advantages that make Puerto Rico the ideal aviation partner in the Caribbean.
+        The strategic advantages that make Puerto&nbsp;Rico the ideal aviation partner in the Caribbean.
       </p>
     </div>
 
@@ -875,10 +830,10 @@
   <section class="biz-opp" id="opportunities">
     <div class="biz-opp__header anim-hidden" data-anim="fade-up">
       <h2 class="biz-opp__title">
-        Business Opportunities with <span>Puerto Rico</span>
+        Business Opportunities with <span>Puerto&nbsp;Rico</span>
       </h2>
       <p class="biz-opp__subtitle">
-        Discover why airlines, investors and operators are choosing Puerto Rico as their next strategic move.
+        Discover why airlines, investors and operators are choosing Puerto&nbsp;Rico as their next strategic move.
       </p>
     </div>
 
@@ -936,10 +891,10 @@
     <div class="new-routes__overlay"></div>
     <div class="new-routes__content">
       <h2 class="new-routes__title anim-hidden" data-anim="fade-left">
-        Puerto Rico Is Looking for New Routes
+        Puerto&nbsp;Rico Is Looking for New Routes
       </h2>
       <p class="new-routes__text anim-hidden delay-2" data-anim="fade-left">
-        Puerto Rico is actively seeking airline partners interested in opening new routes and strengthening air connectivity with Latin America and international markets.
+        Puerto&nbsp;Rico is actively seeking airline partners interested in opening new routes and strengthening air connectivity with Latin America and international markets.
       </p>
       <p class="new-routes__quote anim-hidden delay-3" data-anim="fade-left">
         "We are ready to explore mutually beneficial opportunities."
@@ -960,7 +915,7 @@
       Let's Explore Business Opportunities Together
     </h2>
     <p class="explore__subtitle anim-hidden delay-2" data-anim="fade-up">
-      Are you interested in doing business with Puerto Rico? Tell us about your company and connectivity interests, and our team will contact you.
+      Are you interested in doing business with Puerto&nbsp;Rico? Tell us about your company and connectivity interests, and our team will contact you.
     </p>
     <div class="anim-hidden delay-3 btn btn--cta-large" data-anim="scale-in">
       <a href="#contact">
@@ -1083,7 +1038,7 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('.btn, .btn--nav').forEach(function (btn) {
+    document.querySelectorAll('.btn').forEach(function (btn) {
       btn.addEventListener('click', openModal);
       var anchor = btn.querySelector('a');
       if (anchor) anchor.addEventListener('click', function (ev) { ev.preventDefault(); });
