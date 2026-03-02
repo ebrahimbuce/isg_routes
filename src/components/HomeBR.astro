@@ -1,5 +1,3 @@
-
-
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +11,8 @@
   --c-orange-dark:  #ff8000;
   --c-amber:        #ffc300;
   --c-red:          #ff4d00;
+  --c-red-primary:  #EB2127;
+  --c-red-secondary: #BE202E;
   --c-teal:         #00ded3;
   --c-text:         #464646;
   --c-text-light:   #555;
@@ -23,6 +23,7 @@
   --radius-img:     25px;
   --ease:           cubic-bezier(.23, 1, .32, 1);
   --transition:     0.3s ease;
+
 }
 
 
@@ -112,12 +113,12 @@
 }
 .btn img,
 .btn svg            { width: 18px; height: auto; flex-shrink: 0; align-self: center; }
-.btn img.icon-lg    { width: 24px; height: 24px; object-fit: contain; }
+.btn img.icon-lg    { width: 24px; height: 24px; object-fit: contain;  }
 
 /* Primary – orange gradient with pulse */
 .btn--primary {
-  background: linear-gradient(90deg, #ffb000, #ff7a00);
-  color: var(--c-text-btn);
+  background: linear-gradient(90deg, var(--c-red-primary), var(--c-red-secondary));
+  color: var(--c-white);
   font-weight: 800;
   animation: pulseGlow 3s infinite;
   box-shadow: 0 12px 30px rgba(255, 140, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .25);
@@ -163,8 +164,8 @@
 
 /* CTA Large */
 .btn--cta-large {
-  background: linear-gradient(90deg, #ffb000, #ff7a00);
-  color: var(--c-text-btn);
+  background: linear-gradient(90deg, var(--c-red-primary), var(--c-red-secondary));
+  color: var(--c-white);
   font-weight: 800;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   padding: 22px 48px;
@@ -172,7 +173,7 @@
 
 /* Dark CTA */
 .btn--dark-cta {
-  background: linear-gradient(90deg, #ffb000, #ff7a00);
+  background: linear-gradient(90deg, var(--c-red-primary), var(--c-red-secondary));
   color: var(--c-text-btn);
   padding: 20px 44px;
   font-size: clamp(.9rem, 1.3vw, 1.15rem);
@@ -225,7 +226,7 @@
   font-weight: 700;
   font-size: clamp(2.2rem, 5vw, 5rem);
   line-height: 1.2;
-  background: linear-gradient(90deg, var(--c-orange), var(--c-orange-dark));
+  background: linear-gradient(90deg, var(--c-red-primary), var(--c-red-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -310,7 +311,7 @@
   margin-bottom: 16px;
   line-height: 1.15;
 }
-.biz-opp__title span { color: var(--c-orange); font-style: italic; white-space: nowrap; }
+.biz-opp__title span { color: var(--c-red-primary); font-style: italic; white-space: nowrap; }
 
 .biz-opp__subtitle {
   font-weight: 400;
@@ -359,7 +360,7 @@
    9. NEW ROUTES
    ═══════════════════════════════════════════════════════ */
 .new-routes         { padding: 120px 60px; }
-.new-routes__overlay { background: rgba(26, 37, 44, .87); }
+.new-routes__overlay { background: rgba(2, 82, 84, 0.87); }
 .new-routes__content { margin: 0 auto; }
 
 .new-routes__title {
@@ -645,7 +646,7 @@
   right: 0;
   z-index: 100;
   height: 110px;
-  background: #373737ad;
+  background: #025254ad;
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   backdrop-filter: blur(18px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
@@ -695,8 +696,8 @@
 }
 
 .lang-switcher__flag img {
-  width: 34px;
-  height: 24px;
+  width: 24px;
+  height: 18px;
   object-fit: cover;
   display: block;
 }
@@ -713,8 +714,10 @@
 }
 
 .site-header__logo-shield {
-  height: 70px;
+  height: 110px;
   width: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .site-header__right {
@@ -722,6 +725,13 @@
   align-items: center;
   justify-content: flex-end;
 }
+
+.discover-logo-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+
 
 @media (max-width: 640px) {
   .site-header {
@@ -731,7 +741,8 @@
     padding: 0 1.25rem;
   }
   .site-header__logo-horizontal { height: 45px; }
-  .site-header__logo-shield     { height: 38px; }
+  .site-header__logo-shield     { height: 55px; }
+
 }
 
 .footer {
@@ -818,11 +829,14 @@
         </div>
       </div>
       <div class="site-header__right">
-        <img
-          src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a0abaa9bbb6a63d25ceb43_logo_discover_puertorico_en.webp"
-          alt="Discover Puerto Rico"
-          class="site-header__logo-shield"
-        />
+        <div class="discover-logo-wrapper">
+          <img
+            src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a5d24cd878698da9405bfd_logo_discover.avif"
+            alt="Discover Puerto Rico"
+            class="site-header__logo-shield"
+          />
+          
+        </div>
       </div>
     </div>
   </header>
@@ -993,9 +1007,9 @@
       <p class="new-routes__quote anim-hidden delay-3" data-anim="fade-left">
         "Estamos prontos para explorar oportunidades mutuamente benéficas."
       </p>
-      <div class="anim-hidden delay-4 btn btn--dark-cta" data-anim="fade-up">
+      <div class="anim-hidden delay-4 btn btn--primary" data-anim="fade-up">
         <a href="#contact">
-          <img class="icon-lg" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2de82cab07c52c4fd9_icon-chat.svg" alt="" />
+          <img class="icon-lg" style="filter: invert(100%);" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2de82cab07c52c4fd9_icon-chat.svg" alt="" />
           Inicie uma Conversa de Negócios
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
