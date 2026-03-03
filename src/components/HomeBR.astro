@@ -29,7 +29,6 @@
 
 .isg-routes *   { margin: 0; padding: 0; box-sizing: border-box; }
 .isg-routes     { font-family: var(--font); color: var(--c-text); overflow-x: hidden; }
-.isg-routes img { display: block; }
 .isg-routes a   { text-decoration: none; color: inherit; }
 
 
@@ -66,7 +65,7 @@
 .new-routes__bg                   { position: absolute; inset: 0; z-index: 0; }
 
 .isg-routes .hero__bg img,
-.isg-routes .new-routes__bg img   { width: 100%; height: 100%; object-fit: cover; max-width: none; }
+.isg-routes .new-routes__bg img   { display: block; width: 100%; height: 100%; object-fit: cover; max-width: none; }
 
 .hero__overlay,
 .new-routes__overlay              { position: absolute; inset: 0; z-index: 1; }
@@ -112,7 +111,7 @@
   height: 100%;
 }
 .btn img,
-.btn svg            { width: 18px; height: auto; flex-shrink: 0; align-self: center; }
+.btn svg            { display: block; width: 18px; height: auto; flex-shrink: 0; align-self: center; }
 .btn img.icon-lg    { width: 24px; height: 24px; object-fit: contain;  }
 
 /* Primary – orange gradient with pulse */
@@ -261,6 +260,7 @@
   align-items: flex-start;
 }
 .isg-routes .why-pr__icon {
+  display: block;
   width: 22px;
   min-width: 22px;
   height: 22px;
@@ -289,7 +289,7 @@
   max-height: 600px;
 }
 .isg-routes .why-pr__image img {
-  width: 100%;
+  display: block;
   height: 100%;
   min-height: 400px;
   object-fit: cover;
@@ -341,7 +341,7 @@
   border-color: rgba(255, 166, 0, .4);
 }
 .biz-card__icon                   { width: 42px; min-width: 42px; height: 42px; flex-shrink: 0; }
-.isg-routes .biz-card__icon img   { width: 42px; height: 42px; max-height: 42px; object-fit: contain; }
+.isg-routes .biz-card__icon img   { display: block; width: 42px; height: 42px; max-height: 42px; object-fit: contain; }
 
 .biz-card h4 {
   font-weight: 700;
@@ -709,11 +709,13 @@
 }
 
 .site-header__logo-horizontal {
+  display: block;
   height: 90px;
   width: auto;
 }
 
 .site-header__logo-shield {
+  display: block;
   height: 110px;
   width: auto;
   position: relative;
@@ -785,6 +787,7 @@
 }
 
 .footer__coded-by-logo {
+  display: block;
   height: 22px;
   width: auto;
   opacity: 1;
