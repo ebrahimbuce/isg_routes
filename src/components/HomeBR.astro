@@ -166,8 +166,17 @@
   background: linear-gradient(90deg, var(--c-red-primary), var(--c-red-secondary));
   color: var(--c-white);
   font-weight: 800;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  padding: 22px 48px;
+  font-size: clamp(1.5rem, 2vw, 2.15rem);
+  padding: 40px 80px;
+  border-radius: 999px;
+  gap: 32px;
+}
+.btn--cta-large a {
+  gap: 32px;
+}
+.btn--cta-large img {
+  width: 40px;
+  height: auto;
 }
 
 /* Dark CTA */
@@ -188,8 +197,8 @@
   justify-content: center;
   padding: 120px 60px;
 }
-.hero__overlay { background: rgba(42, 75, 61, .55); }
-.hero__content { text-align: center; }
+.hero__overlay { background: rgba(1, 109, 108, .90); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.hero__content { text-align: center; position: relative; }
 
 .hero__title {
   font-weight: 700;
@@ -215,11 +224,80 @@
   flex-wrap: wrap;
 }
 
+.hero__flower-left {
+  position: absolute;
+  width: 150px;
+  left: -6%;
+  rotate: 80deg;
+  height: auto;
+  z-index: 3;
+}
+
+.hero__flower-right {
+  position: absolute;
+  right: -2%;
+  bottom: -15%;
+  width: 160px;
+  rotate: -70deg;
+  height: auto;
+  z-index: 3;
+}
+
+
 /* ═══════════════════════════════════════════════════════
-   7. WHY PUERTO RICO
+   7. WHY PUERTO RICO + BIZ-OPP PILLARS WRAPPER
    ═══════════════════════════════════════════════════════ */
-.why-pr { padding: 120px 60px; }
+.pillars-wrapper {
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+}
+
+.why-pr { padding: 120px 60px 60px; position: relative; overflow: visible; }
 .why-pr__header { margin-bottom: 60px; }
+
+/* Decorative pillars placed at the left and right edges.
+   Now positioned relative to .pillars-wrapper so they span
+   both why-pr and biz-opp sections. */
+.why-pr__pillar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 68px;
+  background: #016d6c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+}
+.why-pr__pillar--left {
+  left: 0; left: calc(50% - 50vw);
+  justify-content: flex-end;
+  padding-top: 40px;
+  background: #016d6c;
+}
+.why-pr__pillar--right {
+  right: 0; right: calc(50% - 50vw);
+  justify-content: flex-end;
+  padding-bottom: 40px;
+  background: #016d6c;
+}
+.why-pr__pillar-flower {
+  width: auto;
+  height: auto;
+  margin: 0;
+  background: none;
+  position: relative;
+  z-index: 10;
+}
+
+/* Ensure main content sits above the pillars */
+.why-pr > .why-pr__header,
+.why-pr > .why-pr__grid { position: relative; z-index: 1; }
+.biz-opp { position: relative; z-index: 1; }
+.biz-opp__waves { position: relative; z-index: 1; }
 
 .why-pr__title {
   font-weight: 700;
@@ -290,6 +368,7 @@
 }
 .isg-routes .why-pr__image img {
   display: block;
+  /* width: 100%; */
   height: 100%;
   min-height: 400px;
   object-fit: cover;
@@ -298,6 +377,35 @@
 }
 .why-pr__image:hover img { transform: scale(1.04); }
 
+.why-pr__flower-img-left {
+  position: relative;
+  top: 40px;
+  left: 20px;
+  rotate: 30deg;
+  width: 300px;
+  max-width: none;
+}
+
+.why-pr__flower-img-right {
+  position: relative;
+  top: 80px;
+  left: -25px;
+  rotate: -90deg;
+  width: 300px;
+  max-width: none;
+}
+
+@media (max-width: 1440px) {
+  .why-pr__flower-img-left,
+  .why-pr__flower-img-right {
+    left: 8px;
+    width: 220px;
+  }
+
+  .why-pr__flower-img-left {
+    left: 8px;
+  }
+}
 /* ═══════════════════════════════════════════════════════
    8. BUSINESS OPPORTUNITIES
    ═══════════════════════════════════════════════════════ */
@@ -356,11 +464,23 @@
   line-height: 1.6;
 }
 
+.biz-opp__waves {
+  width: 100%;
+  height: auto;
+  margin-top: 100px;
+  margin-bottom: -60px;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+
+
 /* ═══════════════════════════════════════════════════════
    9. NEW ROUTES
    ═══════════════════════════════════════════════════════ */
 .new-routes         { padding: 120px 60px; }
-.new-routes__overlay { background: rgba(2, 82, 84, 0.87); }
+.new-routes__overlay { background: rgba(2, 82, 84, 0.87); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .new-routes__content { margin: 0 auto; }
 
 .new-routes__title {
@@ -389,7 +509,47 @@
 /* ═══════════════════════════════════════════════════════
    10. EXPLORE / CTA
    ═══════════════════════════════════════════════════════ */
-.explore { padding: 120px 60px; text-align: center; }
+.explore {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  padding-left: 60px;
+  padding-right: 60px;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* Tiled wave background – full-bleed */
+.explore::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-50vw + 50%);
+  width: 100vw;
+  z-index: 0;
+  background-image: url('https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a70071190dee427292265f_wave.png');
+  background-repeat: repeat;
+  background-size: 1400px auto;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.explore > * {
+  position: relative;
+  z-index: 1;
+}
+
+.explore__flores-left {
+  position: absolute; 
+  left: calc(-50vw + 50%);
+  bottom: -5.5%;
+  width: auto;
+  height: 70%;
+  max-height: 240px;
+  pointer-events: none;
+  z-index: 0;
+}
 
 .explore__title {
   font-weight: 600;
@@ -402,10 +562,18 @@
 .explore__subtitle {
   font-weight: 300;
   font-size: clamp(.95rem, 1.3vw, 1.3rem);
-  color: var(--c-text-light);
+  color: #555;
   max-width: 700px;
   margin: 0 auto 50px;
   line-height: 1.6;
+}
+
+/* Wave separators */
+.wave-separator {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -574,13 +742,64 @@
   .why-pr__image    { order: -1; min-height: 260px; max-height: 360px; }
   .isg-routes .why-pr__image img { min-height: 260px; max-height: 360px; }
 
+  /* Thin decorative pillars on tablet and smaller screens */
+  .pillars-wrapper { overflow: visible; }
+  .why-pr__pillar { width: 20px; }
+  .why-pr__pillar-flower { display: block; }
+  .why-pr__flower-img-left,
+  .why-pr__flower-img-right {
+    width: 76px;
+    top: 12px;
+  }
+  .why-pr__flower-img-left {
+    left: 2px;
+    right: auto;
+  }
+  .why-pr__flower-img-right {
+    top: 50px;
+    left: auto;
+    right: 2px;
+  }
+
   .biz-opp__cards   { grid-template-columns: repeat(2, 1fr); }
+
+  .explore__flores-left { height: 55%; max-height: 260px; }
+
+  .hero__flower-left {
+  width: 120px;
+  top: -50%;
+  left: -6%;
+  rotate: 100deg;
+}
+
+.hero__flower-right {
+  right: -2%;
+  bottom: -70%;
+  width: 130px;
+}
 }
 
 /* ═══════════════════════════════════════════════════════
    13. RESPONSIVE – MOBILE (≤ 640px)
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 640px) {
+  .hero__flower-left { display: none; }
+  .explore__flores-left { display: none; }
+  .why-pr__pillar { width: 10px; }
+  .why-pr__flower-img-left,
+  .why-pr__flower-img-right {
+    width: 66px;
+    top: 12px;
+  }
+  .why-pr__flower-img-left {
+    left: 2px;
+    right: auto;
+  }
+  .why-pr__flower-img-right {
+    top: 50px;
+    left: auto;
+    right: 2px;
+  }
   .hero            { padding: 80px 24px; min-height: 90vh; }
   .hero__buttons   { flex-direction: column; gap: 16px; }
   .hero__buttons .btn {
@@ -633,6 +852,11 @@
     clip-path: inset(0 round var(--modal-radius));
   }
   .isg-modal__close     { top: 10px; right: 10px; width: 32px; height: 32px; font-size: 18px; }
+
+  .biz-opp__waves{
+    margin-top: 40px;
+    margin-bottom: -20px;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -644,12 +868,32 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 9999;
   height: 110px;
   background: #025254ad;
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   backdrop-filter: blur(18px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.site-header__flower {
+  position: absolute;
+  top: -20px;
+  height: 140%;
+  width: auto;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.site-header__flower--left {
+  left: -50px;
+  transform: rotate(119deg);
+}
+
+.site-header__flower--right {
+  right: -50px;
+  transform: scaleX(-1) rotate(119deg);
 }
 
 .site-header__inner {
@@ -659,7 +903,9 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 0 2.5rem;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .site-header__center {
@@ -716,7 +962,7 @@
 
 .site-header__logo-shield {
   display: block;
-  height: 110px;
+  height: 70px;
   width: auto;
   position: relative;
   z-index: 1;
@@ -740,31 +986,38 @@
     height: 60px;
   }
   .site-header__inner {
-    padding: 0 1.25rem;
+    padding: 0 0.5rem;
+    gap: 0.4rem;
   }
   .site-header__logo-horizontal { height: 45px; }
-  .site-header__logo-shield     { height: 55px; }
+  .site-header__logo-shield     { height: 40px; }
+  .site-header__left  { justify-content: flex-end; }
+  .site-header__right { justify-content: flex-start; }
+}
 
+.flor__banner{
+  max-width: 350px;
+  margin-bottom: 10px;
 }
 
 .footer {
   width: 100%;
   max-width: 100vw;
-  background-color: #1a252c;
+  background-color: #025254DE;
   overflow-x: hidden;
 }
 
 .footer__copyright {
   padding: 1.5rem 2rem;
   text-align: center;
-  background-color: rgba(0, 0, 0, .2);
+  background-color: #0a5052;
 }
 
 .footer__copyright p {
   margin: 0;
   font-family: var(--font);
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, .55);
+  color: #ffffff;
   font-weight: 500;
 }
 
@@ -775,7 +1028,7 @@
   justify-content: center;
   gap: 0.35rem;
   padding: 0.75rem 2rem 1.5rem;
-  background-color: #0d1519;
+  background-color: #025254DE;
 }
 
 .footer__coded-by-text {
@@ -783,7 +1036,7 @@
   font-size: 0.7rem;
   color: #ffffff;
   letter-spacing: 0.08em;
-  opacity: 0.45;
+  opacity: 1;
 }
 
 .footer__coded-by-logo {
@@ -801,6 +1054,10 @@
   .footer__copyright p {
     font-size: 0.85rem;
   }
+
+  .flor__banner{
+    max-width: 250px;
+  }
 }
 
 </style>
@@ -813,10 +1070,12 @@
 
   <!-- HEADER NAV -->
   <header class="site-header">
+    <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a6f7308778f5205b520169_flor.avif" alt="" class="site-header__flower site-header__flower--left" aria-hidden="true" />
+    <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a6f7308778f5205b520169_flor.avif" alt="" class="site-header__flower site-header__flower--right" aria-hidden="true" />
     <div class="site-header__inner">
       <div class="site-header__left">
         <img
-          src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a065cb9fff3bc8b9f6aebb_Layer_1.svg"
+          src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a065cb9fff3bc8b9f6aebb_7d40730a8fa4735dea17206bfe6e6ce3_Layer_1.svg"
           alt="Logo Turismo"
           class="site-header__logo-horizontal"
         />
@@ -834,11 +1093,10 @@
       <div class="site-header__right">
         <div class="discover-logo-wrapper">
           <img
-            src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a5d24cd878698da9405bfd_logo_discover.avif"
+            src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a0abaa9bbb6a63d25ceb43_logo_discover_puertorico_en.webp"
             alt="Discover Puerto Rico"
             class="site-header__logo-shield"
           />
-          
         </div>
       </div>
     </div>
@@ -875,6 +1133,19 @@
       </div>
     </div>
   </section>
+
+  <!-- PILLARS WRAPPER (spans why-pr + biz-opp) -->
+  <div class="pillars-wrapper">
+    <div class="why-pr__pillar why-pr__pillar--left" style="--pillar-flower: none;" aria-hidden="true">
+      <div class="why-pr__pillar-flower">
+        <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a6f7308778f5205b520169_flor.avif" alt="Flor" class="why-pr__flower-img-left">
+      </div>
+    </div>
+    <div class="why-pr__pillar why-pr__pillar--right" style="--pillar-flower: none;" aria-hidden="true">
+      <div class="why-pr__pillar-flower">
+        <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a6f7308778f5205b520169_flor.avif" alt="Flor" class="why-pr__flower-img-right">
+      </div>
+    </div>
 
   <!-- 2. POR QUE PORTO RICO -->
   <section class="why-pr" id="why">
@@ -935,6 +1206,7 @@
         <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2d66e7467f8850e6f2_puerto-rico-colorful.avif" alt="Ruas coloridas de Porto Rico" loading="lazy" />
       </div>
     </div>
+    <img class="biz-opp__waves" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a70071190dee427292265f_wave.png" alt="Waves">
   </section>
 
   <!-- 3. OPORTUNIDADES DE NEGÓCIOS -->
@@ -993,7 +1265,9 @@
       </div>
     </div>
   </section>
+  </div><!-- /.pillars-wrapper -->
 
+  
   <!-- 4. NOVAS ROTAS – DARK CTA -->
   <section class="new-routes">
     <div class="new-routes__bg">
@@ -1032,11 +1306,17 @@
     <p class="explore__subtitle anim-hidden delay-2" data-anim="fade-up">
       Você tem interesse em fazer negócios com Porto&nbsp;Rico? Fale-nos sobre sua empresa e interesses de conectividade, e nossa equipe entrará em contato.
     </p>
-    <div class="anim-hidden delay-3 btn btn--cta-large" data-anim="scale-in">
-      <a href="#contact">
-        Torne-se um Parceiro Estratégico
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
+    <div class="anim-hidden delay-3" data-anim="scale-in" style="margin-bottom:40px;">
+      <div class="anim-hidden delay-4 btn btn--primary" data-anim="fade-up" >
+        <a href="#contact">
+          <img class="icon-lg" style="filter: invert(100%);" src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/699ddd2de82cab07c52c4fd9_icon-chat.svg" alt="" />
+          Inicie uma Conversa de Negócios
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="anim-hidden delay-5" data-anim="scale-in" style="text-align:center;">
+      <img src="https://cdn.prod.website-files.com/699db76ec1a14ce8202ca355/69a6f7308778f5205b520169_flor.avif" alt="" style="width:60px;height:auto;" aria-hidden="true" />
     </div>
   </section>
 
